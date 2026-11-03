@@ -221,7 +221,7 @@ export default function CreatorsPage() {
             For creators
           </p>
           <h1 className="nano-pixel mb-6 font-normal text-4xl sm:text-6xl lg:text-[80px] leading-[0.96] tracking-[0.02em] text-[#ffffff]">
-            YOU WERE NEVER <span className="nano-hl text-[#fed701]">TOO SMALL.</span>
+            YOU ARE NOT <span className="nano-hl text-[#fed701]">TOO SMALL.</span>
           </h1>
           <p className="mb-8 max-w-[600px] text-lg sm:text-xl leading-[30px] font-medium text-[#a9a4a0]">
             Nano does not care how many followers you have. We care how you move people.

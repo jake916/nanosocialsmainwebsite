@@ -25,7 +25,7 @@ export default function Footer({ onOpenCampaign }) {
           </Link>
 
           <p className="nano-pixel text-lg sm:text-xl leading-7 tracking-[0.06em] text-[#fed701] mb-3">
-            You run it. We built the rails.
+            You run it. We built the engine.
           </p>
 
           <p className="font-['Mona_Sans',sans-serif] text-sm sm:text-base leading-6 text-[#a9a4a0] m-0">
@@ -75,14 +75,14 @@ export default function Footer({ onOpenCampaign }) {
               </Link>
             </li>
             <li>
-              <button
-                onClick={() => {
-                  if (onOpenCampaign) onOpenCampaign();
-                }}
-                className="text-[#a9a4a0] hover:text-[#fed701] uppercase tracking-[0.1em] text-left transition-colors cursor-pointer bg-transparent border-0 p-0 font-['VCR_OSD_Mono',monospace]"
+              <a
+                href="https://app.nanosocials.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#a9a4a0] hover:text-[#fed701] uppercase tracking-[0.1em] text-left transition-colors cursor-pointer font-['VCR_OSD_Mono',monospace]"
               >
                 Log in
-              </button>
+              </a>
             </li>
             <li>
               <a

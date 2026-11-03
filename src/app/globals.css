@@ -597,45 +597,17 @@ a {
 /* Trust Bar */
 .nano-trust {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   width: 100%;
-}
-
-.nano-trust__lines {
-  list-style: none;
-  margin: 0;
-  padding: 0 var(--space-6) 0 0;
-  display: grid;
-  gap: var(--space-2);
-  font-family: var(--font-pixel);
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.nano-trust__lines li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.nano-trust__lines li::before {
-  content: "*";
-  color: var(--accent);
 }
 
 .nano-trust__marquee-wrapper {
   position: relative;
   overflow: hidden;
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
-  padding-left: var(--space-6);
   min-width: 0;
-  mask-image: linear-gradient(to right, transparent 0%, black 14px, black calc(100% - 24px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14px, black calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
 }
 
 .nano-trust__track {
@@ -767,5 +739,94 @@ a {
 .notch-card-enter {
   animation: notchDropIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Ninja Katana Blade Pixel-Art Animations */
+@keyframes nanoBladeGlint {
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    transform: translate(14px, 14px);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: translate(16px, 16px);
+    opacity: 0;
+  }
+}
+
+@keyframes nanoBladeSparkTip {
+  0%, 55%, 100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  65%, 80% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes nanoBladeSparkHilt {
+  0%, 25%, 100% {
+    opacity: 1;
+  }
+  35%, 85% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes nanoBladeAuraPulse {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 3px #fed701);
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px #fed701);
+  }
+}
+
+@keyframes nanoBladeSlash {
+  0% {
+    transform: translate(-3px, -3px) scale(0.92);
+    opacity: 0;
+  }
+  30% {
+    transform: translate(1px, 1px) scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(4px, 4px) scale(1.08);
+    opacity: 0;
+  }
+}
+
+.nano-blade-glint {
+  animation: nanoBladeGlint 2.2s steps(6) infinite;
+}
+
+.nano-blade-spark-tip {
+  transform-origin: 79.5px 76.5px;
+  animation: nanoBladeSparkTip 2.2s steps(2) infinite;
+}
+
+.nano-blade-spark-hilt {
+  transform-origin: 63.5px 59.5px;
+  animation: nanoBladeSparkHilt 2.2s steps(2) infinite;
+}
+
+.nano-blade-aura {
+  animation: nanoBladeAuraPulse 1.8s steps(3) infinite;
+}
+
+.nano-blade-slash-active {
+  transform-origin: 70px 68px;
+  animation: nanoBladeSlash 0.6s steps(4) forwards;
+}
+
 
 

@@ -356,7 +356,7 @@ export default function BrandsPage() {
             For brands
           </p>
           <h1 className="nano-pixel mb-6 font-normal text-4xl sm:text-6xl lg:text-[72px] leading-[0.98] tracking-[0.02em] text-[#ffffff]">
-            YOUR CAMPAIGN. <span className="nano-hl text-[#fed701]">OUR RAILS.</span>
+            YOUR CAMPAIGN. <span className="nano-hl text-[#fed701]">OUR ENGINE.</span>
           </h1>
           <p className="mb-8 max-w-[600px] text-lg sm:text-xl leading-[30px] font-medium text-[#a9a4a0]">
             Everything you need to run creator campaigns on purpose: graded creators,
@@ -364,13 +364,15 @@ export default function BrandsPage() {
             start to finish.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button
-              onClick={() => setCampaignModalOpen(true)}
+            <a
+              href="https://app.nanosocials.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="nano-btn nano-btn--primary nano-btn--lg nano-notch-sm inline-flex items-center gap-3 cursor-pointer"
             >
               <span>Open a campaign</span>
               <PixelIcon name="arrow-right" size={16} />
-            </button>
+            </a>
             <a
               href="#pricing"
               className="nano-btn nano-btn--outline nano-btn--lg nano-notch-sm inline-flex cursor-pointer text-decoration-none"
@@ -698,13 +700,15 @@ export default function BrandsPage() {
                   One platform,{" "}
                   <span className="nano-hl text-[#fed701]">start to finish.</span>
                 </h2>
-                <button
-                  onClick={() => setCampaignModalOpen(true)}
+                <a
+                  href="https://app.nanosocials.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="nano-btn nano-btn--primary nano-btn--lg nano-notch-sm inline-flex items-center gap-3 cursor-pointer"
                 >
                   <span>Open a campaign</span>
                   <PixelIcon name="arrow-right" size={16} />
-                </button>
+                </a>
               </div>
             </div>
           </NanoFrame>

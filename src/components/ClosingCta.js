@@ -34,15 +34,15 @@ export default function ClosingCta({ onOpenCampaign }) {
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={() => {
-                      if (onOpenCampaign) onOpenCampaign();
-                    }}
+                  <a
+                    href="https://app.nanosocials.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="nano-btn nano-btn--primary nano-btn--lg"
                   >
                     <span>Open your first campaign</span>
                     <ArrowRight className="w-5 h-5 ml-1" />
-                  </button>
+                  </a>
                   <Link
                     href="/contact"
                     className="nano-btn nano-btn--outline nano-btn--lg"

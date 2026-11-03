@@ -32,24 +32,24 @@ export default function Navbar({ onOpenCampaign }) {
 
         {/* Right Action CTAs */}
         <div className="flex items-center gap-3 z-10">
-          <button
-            onClick={() => {
-              if (onOpenCampaign) onOpenCampaign();
-            }}
+          <a
+            href="https://app.nanosocials.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:block font-['VCR_OSD_Mono',ui-monospace,monospace] text-sm uppercase tracking-[0.1em] text-[#a9a4a0] hover:text-[#fed701] px-2 py-1 transition-colors cursor-pointer"
           >
             Log in
-          </button>
-          <button
-            onClick={() => {
-              if (onOpenCampaign) onOpenCampaign();
-            }}
+          </a>
+          <a
+            href="https://app.nanosocials.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nano-btn nano-btn--primary nano-btn--sm"
           >
             <span className="hidden sm:inline">Open a campaign</span>
             <span className="sm:hidden">Campaign</span>
             <ArrowRight className="w-4 h-4 ml-1" />
-          </button>
+          </a>
         </div>
       </div>
     </header>

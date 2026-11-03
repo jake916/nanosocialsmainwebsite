@@ -122,7 +122,7 @@ export default function AboutPage() {
             About Nanosocials
           </p>
           <h1 className="nano-pixel text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-[0.02em] text-white mb-6">
-            Collaboration rails for <span className="text-[#fed701]">audience attention.</span>
+            Collaboration engine for <span className="text-[#fed701]">audience attention.</span>
           </h1>
           <p className="font-['Mona_Sans',sans-serif] text-lg sm:text-xl leading-8 text-[#a9a4a0] m-0">
             Nanosocials was built to replace the chaotic spreadsheet-and-DM approach to creator marketing. We connect brands with verified, performance-graded creators through synchronized waves that build durable social proof.
@@ -137,7 +137,7 @@ export default function AboutPage() {
             Our Foundation
           </p>
           <h2 className="nano-pixel text-3xl sm:text-4xl font-normal leading-[1.05] tracking-[0.02em] text-white mb-12">
-            More than finding creators. <span className="text-[#fed701]">We help campaigns move.</span>
+            More than finding creators. <span className="text-[#fed701]">We make campaigns worth it.</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

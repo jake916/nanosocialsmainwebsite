@@ -17,6 +17,12 @@ export default function Hero({ onOpenCampaign }) {
   const [charIndex, setCharIndex] = useState(0);
   const [holdCount, setHoldCount] = useState(0);
   const [selectedGoal, setSelectedGoal] = useState("content");
+  const [bladeSlashing, setBladeSlashing] = useState(false);
+
+  const triggerBladeSlash = () => {
+    setBladeSlashing(true);
+    setTimeout(() => setBladeSlashing(false), 650);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -76,17 +82,19 @@ export default function Hero({ onOpenCampaign }) {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => {
-                if (onOpenCampaign) onOpenCampaign();
-              }}
+            <a
+              href="https://app.nanosocials.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="nano-btn nano-btn--primary nano-btn--lg"
             >
               <span>Open a campaign</span>
               <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
+            </a>
             <a
-              href="#how"
+              href="https://youtu.be/ojSNrC6qOZI?si=256BbTWzCS_y2ow_"
+              target="_blank"
+              rel="noopener noreferrer"
               className="nano-btn nano-btn--outline nano-btn--lg"
             >
               <span className="nano-btn__in">See how it works</span>
@@ -153,9 +161,14 @@ export default function Hero({ onOpenCampaign }) {
             </div>
           </div>
 
-          {/* Middle Column: The Mascot in the Center (Larger Transparent Animated Ninja) */}
+          {/* Middle Column: The Mascot in the Center (Larger Transparent Animated Ninja with Interactive Blade) */}
           <div className="md:col-span-4 flex justify-center items-center py-2 relative">
-            <div className="relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] flex justify-center items-center transform transition-transform hover:scale-105 duration-300">
+            <div
+              onClick={triggerBladeSlash}
+              onMouseEnter={triggerBladeSlash}
+              title="Click or hover to slash!"
+              className="group relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] flex justify-center items-center transform transition-transform hover:scale-105 duration-300 cursor-pointer"
+            >
               <Image
                 src="/1023(1).gif"
                 alt="The Animated Nano Ninja"
@@ -165,6 +178,68 @@ export default function Hero({ onOpenCampaign }) {
                 className="nano-pixelated object-contain w-full h-auto max-h-[460px] sm:max-h-[500px] md:max-h-[540px] drop-shadow-[0_15px_40px_rgba(254,215,1,0.3)] select-none"
                 priority
               />
+
+              {/* Pixel-Art Katana Blade Gleam, Sparks & Interactive Slash Overlay */}
+              <svg
+                viewBox="0 0 100 100"
+                shapeRendering="crispEdges"
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 w-full h-full overflow-visible"
+              >
+                {/* Continuous electric gold aura pulsing along the katana blade (x:64..79, y:61..76) */}
+                <g className="nano-blade-aura">
+                  <rect x="64" y="61" width="2" height="2" fill="#fed701" opacity="0.85" />
+                  <rect x="66" y="63" width="2" height="2" fill="#ffe763" opacity="0.9" />
+                  <rect x="68" y="65" width="2" height="2" fill="#ffffff" opacity="0.95" />
+                  <rect x="70" y="67" width="2" height="2" fill="#fed701" opacity="0.9" />
+                  <rect x="72" y="69" width="2" height="2" fill="#ffe763" opacity="0.9" />
+                  <rect x="74" y="71" width="2" height="2" fill="#ffffff" opacity="0.95" />
+                  <rect x="76" y="73" width="2" height="2" fill="#fed701" opacity="0.9" />
+                  <rect x="78" y="75" width="2.5" height="2.5" fill="#ffffff" />
+                </g>
+
+                {/* Travelling metallic-gold pixel glint sliding from hilt to blade tip */}
+                <g className="nano-blade-glint">
+                  <rect x="63" y="60" width="3" height="1.5" fill="#ffffff" />
+                  <rect x="64.5" y="61.5" width="3" height="1.5" fill="#fed701" />
+                  <rect x="66" y="63" width="2" height="1.5" fill="#ffe763" />
+                </g>
+
+                {/* Pixel star spark at the katana tip */}
+                <g className="nano-blade-spark-tip">
+                  <rect x="79" y="74" width="1" height="5" fill="#fed701" />
+                  <rect x="77" y="76" width="5" height="1" fill="#fed701" />
+                  <rect x="79" y="76" width="1" height="1" fill="#ffffff" />
+                </g>
+
+                {/* Pixel star spark near the hilt guard */}
+                <g className="nano-blade-spark-hilt">
+                  <rect x="63" y="58" width="1" height="3" fill="#ffe763" />
+                  <rect x="62" y="59" width="3" height="1" fill="#ffe763" />
+                  <rect x="63" y="59" width="1" height="1" fill="#ffffff" />
+                </g>
+
+                {/* Interactive Katana Slash Wave triggered on hover / click */}
+                <g
+                  className={`transition-opacity duration-150 ${
+                    bladeSlashing ? "opacity-100 nano-blade-slash-active" : "opacity-0 group-hover:opacity-100"
+                  }`}
+                >
+                  {/* Stepped pixel-art crescent slash arc */}
+                  <path
+                    d="M58 54 h4 v2 h4 v2 h4 v3 h4 v3 h3 v4 h3 v4 h2 v5 h-3 v-3 h-3 v-4 h-3 v-3 h-4 v-3 h-4 v-3 h-4 v-2 h-3 z"
+                    fill="#fed701"
+                  />
+                  <path
+                    d="M60 55 h3 v2 h4 v2 h4 v3 h3 v3 h3 v4 h2 v4 h-2 v-3 h-3 v-3 h-3 v-3 h-4 v-3 h-4 v-2 h-3 z"
+                    fill="#ffffff"
+                  />
+                  {/* Burst pixel sparks */}
+                  <rect x="83" y="72" width="2" height="2" fill="#fed701" />
+                  <rect x="85" y="77" width="1.5" height="1.5" fill="#ffffff" />
+                  <rect x="74" y="80" width="2" height="2" fill="#ffe763" />
+                </g>
+              </svg>
             </div>
           </div>
 
@@ -200,10 +275,6 @@ export default function Hero({ onOpenCampaign }) {
           <div className="nano-trust-frame w-full">
             <div className="nano-trust-frame__in">
               <div className="nano-trust">
-                <ul className="nano-trust__lines">
-                  <li>Trusted by brands</li>
-                  <li>that came back.</li>
-                </ul>
                 <div className="nano-trust__marquee-wrapper">
                   <div className="nano-trust__track">
                     {[...brands, ...brands, ...brands, ...brands].map((brand, idx) => (
