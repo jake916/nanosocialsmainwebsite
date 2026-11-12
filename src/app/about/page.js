@@ -46,28 +46,32 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: "[FULL NAME]",
-      role: "[ROLE]",
-      bio: "[One line on what they do or care about]",
-      linkedin: "https://www.linkedin.com",
+      name: "Ikenna Onyeama",
+      role: "CEO",
+      image: "/Ikenna%20Headshot.png",
+      objectPosition: "center 12%",
+      linkedin: "https://www.linkedin.com/in/ikennaonyeama/",
     },
     {
-      name: "[FULL NAME]",
-      role: "[ROLE]",
-      bio: "[One line on what they do or care about]",
-      linkedin: "https://www.linkedin.com",
+      name: "Joshua Udotai",
+      role: "CTO",
+      image: "/Joshua%20Udotai.png",
+      objectPosition: "center 10%",
+      linkedin: "https://www.linkedin.com/in/josh-udotai/",
     },
     {
-      name: "[FULL NAME]",
-      role: "[ROLE]",
-      bio: "[One line on what they do or care about]",
-      linkedin: "https://www.linkedin.com",
+      name: "Goodness Chinemelum",
+      role: "Head of Growth",
+      image: "/Goodness%20headshot.png",
+      objectPosition: "center 12%",
+      linkedin: "https://www.linkedin.com/in/goodness-chinemelum-36a8121a9/",
     },
     {
-      name: "[FULL NAME]",
-      role: "[ROLE]",
-      bio: "[One line on what they do or care about]",
-      linkedin: "https://www.linkedin.com",
+      name: "Tolulope Afolabi",
+      role: "Brand Assistant",
+      image: "/Headshot%20(1).jpg",
+      objectPosition: "center 10%",
+      linkedin: "https://www.linkedin.com/in/tolulopeafo/",
     },
   ];
 
@@ -197,14 +201,14 @@ export default function AboutPage() {
               <div key={idx} className="nano-lift group h-full">
                 <div className="nano-team-card">
                   <div className="nano-team-card__in">
-                    {/* Photo Needed Box */}
-                    <div className="aspect-square bg-[#1f1b1c] border-b-4 border-white flex flex-col items-center justify-center p-6 text-center select-none">
-                      <p className="font-['VCR_OSD_Mono',monospace] text-sm uppercase tracking-[0.1em] text-[#fed701] font-bold mb-1.5">
-                        [PHOTO NEEDED]
-                      </p>
-                      <p className="font-['Mona_Sans',sans-serif] text-xs sm:text-sm text-[#a9a4a0] m-0">
-                        Square headshot
-                      </p>
+                    {/* Team Member Headshot */}
+                    <div className="aspect-square bg-[#1f1b1c] border-b-4 border-white overflow-hidden relative select-none">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        style={{ objectPosition: member.objectPosition || "center top" }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
 
                     {/* Team Member Info */}
@@ -213,12 +217,14 @@ export default function AboutPage() {
                         <h3 className="font-['VCR_OSD_Mono',monospace] text-lg sm:text-xl font-normal uppercase tracking-[0.06em] text-white m-0 mb-1.5">
                           {member.name}
                         </h3>
-                        <p className="font-['VCR_OSD_Mono',monospace] text-xs uppercase tracking-[0.08em] text-[#73887a] m-0 mb-3">
+                        <p className="font-['VCR_OSD_Mono',monospace] text-xs uppercase tracking-[0.08em] text-[#73887a] m-0">
                           {member.role}
                         </p>
-                        <p className="font-['Mona_Sans',sans-serif] text-sm leading-relaxed text-[#a9a4a0] m-0">
-                          {member.bio}
-                        </p>
+                        {member.bio && (
+                          <p className="font-['Mona_Sans',sans-serif] text-sm leading-relaxed text-[#a9a4a0] m-0 mt-3">
+                            {member.bio}
+                          </p>
+                        )}
                       </div>
 
                       <div>

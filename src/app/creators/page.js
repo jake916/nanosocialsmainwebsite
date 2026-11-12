@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NinjaModal from "@/components/NinjaModal";
@@ -12,6 +12,8 @@ const ICONS = {
     "M6 1h1v1h-1zM6 2h2v1h-2zM6 3h3v1h-3zM6 4h4v1h-4zM0 5h11v1h-11zM0 6h11v1h-11zM6 7h4v1h-4zM6 8h3v1h-3zM6 9h2v1h-2zM6 10h1v1h-1z",
   "caret-right":
     "M2 1h2v1h-2zM2 2h3v1h-3zM3 3h3v1h-3zM4 4h3v1h-3zM5 5h3v1h-3zM5 6h3v1h-3zM4 7h3v1h-3zM3 8h3v1h-3zM2 9h3v1h-3zM2 10h2v1h-2z",
+  "caret-left":
+    "M8 1h2v1h-2zM7 2h3v1h-3zM6 3h3v1h-3zM5 4h3v1h-3zM4 5h3v1h-3zM4 6h3v1h-3zM5 7h3v1h-3zM6 8h3v1h-3zM7 9h3v1h-3zM8 10h2v1h-2z",
   "close":
     "M1 1h2v1h-2zM9 1h2v1h-2zM1 2h3v1h-3zM8 2h3v1h-3zM2 3h3v1h-3zM7 3h3v1h-3zM3 4h6v1h-6zM4 5h4v1h-4zM4 6h4v1h-4zM3 7h6v1h-6zM2 8h3v1h-3zM7 8h3v1h-3zM1 9h3v1h-3zM8 9h3v1h-3zM1 10h2v1h-2zM9 10h2v1h-2z",
   "plus":
@@ -183,6 +185,170 @@ function GradeRankTile({ grade, size = 96 }) {
       <rect x="4" y="9" width="9" height="1" fill="#ffe763" />
       <rect x="7" y="5" width="2" height="2" fill="#ffffff" />
     </svg>
+  );
+}
+
+const LANDSCAPE_FILES = new Set([
+  "0B5A4111.jpg",
+  "0B5A4119.jpg",
+  "0B5A4261.jpg",
+  "0B5A4353.jpg",
+  "0B5A4415.jpg",
+]);
+
+const NINJA_NIGHT_IMAGES = [
+  "0B5A4111.jpg",
+  "0B5A4119.jpg",
+  "0B5A4133.jpg",
+  "0B5A4147.jpg",
+  "0B5A4182.jpg",
+  "0B5A4232.jpg",
+  "0B5A4251.jpg",
+  "0B5A4261.jpg",
+  "0B5A4270.jpg",
+  "0B5A4272.jpg",
+  "0B5A4279.jpg",
+  "0B5A4280.jpg",
+  "0B5A4321.jpg",
+  "0B5A4353.jpg",
+  "0B5A4415.jpg",
+  "0B5A4430.jpg",
+  "0B5A4436.jpg",
+].map((file, idx) => ({
+  src: `/ninja%20night/${file}`,
+  alt: `Ninja Night community gathering photo ${idx + 1}`,
+  isLandscape: LANDSCAPE_FILES.has(file),
+}));
+
+const COLLABORATORY_IMAGES = [
+  "SAJ_6209.jpg",
+  "SAJ_6212.jpg",
+  "SAJ_6217.jpg",
+  "SAJ_6225.jpg",
+  "SAJ_6227.jpg",
+  "SAJ_6240.jpg",
+  "SAJ_6244.jpg",
+  "SAJ_6248.jpg",
+  "SAJ_6256.jpg",
+  "SAJ_6260.jpg",
+  "SAJ_6268.jpg",
+  "SAJ_6280.jpg",
+  "SAJ_6287.jpg",
+  "SAJ_6318.jpg",
+  "SAJ_6338.jpg",
+  "SAJ_6390.jpg",
+  "SAJ_6410.jpg",
+  "SAJ_6440.jpg",
+  "SAJ_6450.jpg",
+  "SAJ_6526.jpg",
+  "SAJ_6573.JPG",
+].map((file, idx) => ({
+  src: `/collaboratory/${file}`,
+  alt: `The Collaboratory space photo ${idx + 1}`,
+  isLandscape: false,
+}));
+
+function WindowImageSlider({ images, label = "photo", intervalMs = 3500 }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused || images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, intervalMs);
+    return () => clearInterval(timer);
+  }, [isPaused, images.length, intervalMs]);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  return (
+    <div
+      className="relative aspect-[4/5] h-[420px] sm:h-[500px] lg:h-[540px] w-full border-4 border-[#ffffff] overflow-hidden mb-5 bg-[#0c0a0b] group select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Slides */}
+      {images.map((img, idx) => (
+        <div
+          key={img.src}
+          className={`absolute inset-0 w-full h-full flex items-center justify-center transition-opacity duration-500 ${
+            idx === currentIndex
+              ? "opacity-100 z-10"
+              : "opacity-0 z-0 pointer-events-none"
+          }`}
+        >
+          {/* Ambient blurred backdrop so any aspect ratio looks full and framed */}
+          <img
+            src={img.src}
+            alt=""
+            aria-hidden="true"
+            loading={idx === 0 ? "eager" : "lazy"}
+            className="absolute inset-0 w-full h-full object-cover object-center blur-xl scale-110 opacity-40 pointer-events-none"
+          />
+
+          {/* Main Centered Image */}
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading={idx === 0 ? "eager" : "lazy"}
+            className={`relative z-10 w-full h-full ${
+              img.isLandscape
+                ? "object-contain object-center"
+                : "object-cover object-center"
+            }`}
+          />
+        </div>
+      ))}
+
+      {/* Top-right frame counter badge */}
+      <div className="absolute top-3 right-3 z-20 bg-[#0c0a0b]/90 border-2 border-[#ffffff] px-2.5 py-1 font-pixel text-xs tracking-[0.1em] text-[#fed701]">
+        {String(currentIndex + 1).padStart(2, "0")} /{" "}
+        {String(images.length).padStart(2, "0")}
+      </div>
+
+      {/* Previous & Next Pixel Controls */}
+      <button
+        type="button"
+        onClick={goToPrev}
+        aria-label={`Previous ${label}`}
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-[#0c0a0b]/85 hover:bg-[#fed701] text-[#ffffff] hover:text-[#0c0a0b] border-2 border-[#ffffff] grid place-items-center cursor-pointer transition-colors opacity-90 group-hover:opacity-100"
+      >
+        <PixelIcon name="caret-left" size={14} />
+      </button>
+
+      <button
+        type="button"
+        onClick={goToNext}
+        aria-label={`Next ${label}`}
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-[#0c0a0b]/85 hover:bg-[#fed701] text-[#ffffff] hover:text-[#0c0a0b] border-2 border-[#ffffff] grid place-items-center cursor-pointer transition-colors opacity-90 group-hover:opacity-100"
+      >
+        <PixelIcon name="caret-right" size={14} />
+      </button>
+
+      {/* Bottom Pixel Pip Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-[#0c0a0b]/85 px-2.5 py-1.5 border-2 border-[#2e2526] max-w-[92%] overflow-x-auto">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => setCurrentIndex(idx)}
+            aria-label={`Show ${label} ${idx + 1}`}
+            className={`h-2 flex-none transition-all cursor-pointer border-0 p-0 ${
+              idx === currentIndex
+                ? "w-3.5 bg-[#fed701]"
+                : "w-1.5 bg-[#73887a] hover:bg-[#ffffff]"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -418,20 +584,11 @@ export default function CreatorsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Window 1: ninja_night.jpg */}
           <NanoWindow title="ninja_night.jpg">
-            <div
-              role="img"
-              aria-label="Image needed: a photo from Ninja Night"
-              className="aspect-[16/10] border-4 border-dashed border-[#73887a] grid place-items-center text-center p-6 box-border mb-5 bg-[#151213]"
-            >
-              <div>
-                <p className="m-0 mb-2 font-pixel text-base tracking-[0.1em] uppercase text-[#fed701]">
-                  [Image needed]
-                </p>
-                <p className="m-0 text-sm leading-5 text-[#a9a4a0]">
-                  A real photo from Ninja Night
-                </p>
-              </div>
-            </div>
+            <WindowImageSlider
+              images={NINJA_NIGHT_IMAGES}
+              label="Ninja Night photo"
+              intervalMs={3500}
+            />
             <h3 className="nano-pixel mb-2 font-normal text-[22px] tracking-[0.04em] text-[#ffffff]">
               Ninja Night
             </h3>
@@ -442,20 +599,11 @@ export default function CreatorsPage() {
 
           {/* Window 2: the_collaboratory.jpg */}
           <NanoWindow title="the_collaboratory.jpg">
-            <div
-              role="img"
-              aria-label="Image needed: a photo of the Collaboratory space"
-              className="aspect-[16/10] border-4 border-dashed border-[#73887a] grid place-items-center text-center p-6 box-border mb-5 bg-[#151213]"
-            >
-              <div>
-                <p className="m-0 mb-2 font-pixel text-base tracking-[0.1em] uppercase text-[#fed701]">
-                  [Image needed]
-                </p>
-                <p className="m-0 text-sm leading-5 text-[#a9a4a0]">
-                  A real photo of the Collaboratory space
-                </p>
-              </div>
-            </div>
+            <WindowImageSlider
+              images={COLLABORATORY_IMAGES}
+              label="Collaboratory photo"
+              intervalMs={3800}
+            />
             <h3 className="nano-pixel mb-2 font-normal text-[22px] tracking-[0.04em] text-[#ffffff]">
               The Collaboratory
             </h3>

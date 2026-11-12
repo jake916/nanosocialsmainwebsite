@@ -14,6 +14,11 @@ export const metadata = {
     "Mainstack",
     "creator distribution",
   ],
+  icons: {
+    icon: "/images/nano-logo.svg",
+    shortcut: "/images/nano-logo.svg",
+    apple: "/images/nano-logo.svg",
+  },
   openGraph: {
     title: "Nanosocials: Open a campaign. Watch creators run it.",
     description:
