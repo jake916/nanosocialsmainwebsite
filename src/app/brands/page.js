@@ -620,20 +620,12 @@ export default function BrandsPage() {
 
         <div className="flex-[1_1_520px] min-w-0">
           <NanoWindow title="live_report">
-            <div
-              role="img"
-              aria-label="Image needed: the real Nano campaign dashboard"
-              className="aspect-[16/10] border-4 border-dashed border-[#73887a] grid place-items-center text-center p-6 box-border bg-[#151213]"
-            >
-              <div>
-                <p className="m-0 mb-2 font-pixel text-base tracking-[0.1em] uppercase text-[#fed701]">
-                  [Image needed]
-                </p>
-                <p className="m-0 max-w-md text-sm leading-5 text-[#a9a4a0]">
-                  Screenshot of the live brand dashboard: per-creator views, reach,
-                  engagement and clicks
-                </p>
-              </div>
+            <div className="border-2 border-[#2e2526] bg-[#0c0a0b] overflow-hidden">
+              <img
+                src="/Brand%20campaign%20report@2x.png"
+                alt="Screenshot of the live Nano brand campaign report dashboard showing per-creator views, reach, engagement, and payout breakdown"
+                className="w-full h-auto block"
+              />
             </div>
           </NanoWindow>
         </div>
